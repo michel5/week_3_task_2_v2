@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 
 public class WebVieuwController extends AppCompatActivity {
@@ -25,8 +26,7 @@ public class WebVieuwController extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent INTENT = new Intent(WebVieuwController.this, MainActivity.class);
-                startActivity(INTENT);
+                finish();
             }
         });
 
@@ -35,10 +35,12 @@ public class WebVieuwController extends AppCompatActivity {
 
         //web vieuw
         WebView myWebView = (WebView) findViewById(R.id.web_vieuw_id);
+        myWebView.setWebViewClient(new WebViewClient());
+        myWebView.getSettings().setJavaScriptEnabled(true);
         System.out.println("testje");
         Log.i("url", "blablabalabala "+intent.getStringExtra("url"));
-       // myWebView.loadUrl(intent.getStringExtra("url"));
-        myWebView.loadUrl("https://vlo.informatica.hva.nl/");
+        myWebView.loadUrl(intent.getStringExtra("url"));
+        //myWebView.loadUrl("https://vlo.informatica.hva.nl/");
 
     }
 }
